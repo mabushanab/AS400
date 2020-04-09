@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="contents">
+	<h:form id="frmRoles">
+		<p:messages />
+		<p:panelGrid columns="4" id="model" style="margin:auto">
+			<p:autoUpdate />
+			<f:facet name="header">#{msg.get('Roles')} Form</f:facet>
+			<p:outputLabel value="#{msg.get('name')}" for="Name" />
+			<p:inputText type="text" id="Name" value="#{mbRoles.model.name}" disabled="#{mbRoles.readOnlyMode}" readOnly="#{mbRoles.readOnlyMode}"
+				placeholder="Enter value" />
+
+			<f:facet name="footer">
+				<div align="center" style="height: 30px">
+					<p:commandButton value="Add" action="#{mbRoles.add}" rendered="#{mbRoles.allowAdd}" process="model" />
+					<p:commandButton value="Edit" action="#{mbRoles.edit}" rendered="#{mbRoles.allowEdit}" process="@this" />
+					<p:commandButton value="Save" action="#{mbRoles.save}" rendered="#{mbRoles.allowSave}" process="model" />
+					<p:commandButton value="Delete" action="#{mbRoles.delete}" rendered="#{mbRoles.allowDelete}" process="@this" />
+					<p:commandButton value="Reset" action="#{mbRoles.reset}" rendered="#{mbRoles.allowReset}" process="@this" />
+					<p:commandButton value="Fill" action="#{mbRoles.fill}" rendered="#{mbRoles.allowFill}" process="@this" />
+					<p:commandButton value="Cancel Edit" action="#{mbRoles.cancelEdit()}" rendered="#{mbRoles.editMode}" process="@this" />
+				</div>
+			</f:facet>
+		</p:panelGrid>
+		<br />
+		<p:dataTable value="#{mbRoles.modelList}" var="model" rowKey="#{model.id}" paginator="true" paginatorAlwaysVisible="false"
+			paginatorPosition="bottom" selectionMode="single" filteredValue="#{mbRoles.filterList}" selection="#{mbRoles.model}" emptyMessage=""
+			rowIndexVar="row">
+			<p:ajax event="rowSelect" update="@form:model" />
+			<p:autoUpdate />
+			<f:facet name="header">Roless Data Table</f:facet>
+			<p:column headerText="#">#{row+1}</p:column>
+			<p:column headerText="#{msg.get('name')}" sortBy="#{model.name}" filterBy="#{model.name}" filterMatchMode="contains">
+				<h:outputText value="#{model.name==null?'-':model.name}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

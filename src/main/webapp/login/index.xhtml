@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="page-title">Login Page</ui:define>
+	<ui:define name="contents">
+	<div class="login-page">
+		<form method="post" action="#{request.contextPath}/login">
+		<div class="error-message">
+			#{mbSecurity.message}
+		</div>
+			<div class="login-panel ">
+				<div class="login-panel-header">Please Sign in</div>
+				<div class="fields">
+					<div class="fieldset">
+						<label for="username">Username</label>
+						<input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus" />
+					</div>
+					<div class="fieldset">
+						<label for="password">Password</label>
+						<input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required" />
+					</div>
+					<div class="panel-footer">
+						<button class="btn btn-primary" type="submit">Sign in</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		<ui:include src="/WEB-INF/templates/inc/footer.xhtml"/>
+	</div>
+</ui:define>
+</ui:composition>
+</html>

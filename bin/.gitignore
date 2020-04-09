@@ -1,0 +1,14 @@
+/h2.data.mv.db
+/h2.data.trace.db
+
+target
+.project
+.classpath
+.settings
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
+tomcat*/*
+front-end/.vscode/settings.json
+*.db
+.factorypath
+*.vpp.*

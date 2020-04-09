@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:jk="http://jalalkiswani.com/jsf" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="page-header-text">
+		<h2>User Account</h2>
+	</ui:define>
+	<ui:define name="contents">
+		<h:form id="frmResetPassword">
+			<p:messages globalOnly="true"/>
+			<p:autoUpdate />
+			<p:panelGrid columns="2" id="model" style="margin:auto">
+				<f:facet name="header">Reset Password Form</f:facet>
+				<p:outputLabel value="Email"  />
+				<h:outputText value="#{mbSecurity.user.username}"></h:outputText>
+
+				<p:outputLabel value="Current Password" for="currentPassword" />
+				<p:password id="currentPassword" value="#{mbSecurity.currentPassword}" placeholder="Enter value" required="true" requiredMessage=""/>
+
+				<p:outputLabel value="New Password" for="newPassword" />
+				<p:password id="newPassword" value="#{mbSecurity.newPassword}" placeholder="Enter value" match="confirm" required="true" requiredMessage=""/>
+
+				<p:outputLabel value="Confirm" for="confirm" />
+				<p:password id="confirm" value="#{mbSecurity.newPassword}" placeholder="Enter value" required="true" requiredMessage=""/>
+				<f:facet name="footer">
+					<div align="center">
+						<p:commandButton value="Change" action="#{mbSecurity.changePassword()}" />
+					</div>
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
+
+

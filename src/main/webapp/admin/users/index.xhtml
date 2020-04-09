@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="contents">
+		<h:form>
+			<p:messages />
+			<p:panelGrid columns="2" id="model" style="margin:auto">
+			<p:autoUpdate />
+				<f:facet name="header">Clowiz-Page Form</f:facet>
+				<p:outputLabel value="#{msg.get('username')}" for="username" />
+				<p:inputText type="text" id="username" value="#{mbUsers.model.username}" required="false" disabled="#{mbUsers.readOnlyMode || mbUsers.model.id>0}" readOnly="#{mbUsers.readOnlyMode}" placeholder="Enter value" />
+
+				<p:outputLabel value="#{msg.get('firstname')}" for="firstname" />
+				<p:inputText type="text" id="firstname" value="#{mbUsers.model.firstname}" required="false" disabled="#{mbUsers.readOnlyMode}" readOnly="#{mbUsers.readOnlyMode}" placeholder="Enter value" />
+
+				<p:outputLabel value="#{msg.get('lastname')}" for="lastname" />
+				<p:inputText type="text" id="lastname" value="#{mbUsers.model.lastname}" required="false" disabled="#{mbUsers.readOnlyMode}" readOnly="#{mbUsers.readOnlyMode}" placeholder="Enter value" />
+
+				<p:outputLabel value="#{msg.get('roles')}" for="role" />
+				<p:selectOneMenu value="#{mbUsers.model.role}" id="role" converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemValue="#{null}" itemLabel="Normal user"/>
+					<f:selectItems value="#{mbRoles.modelList}" var="role" itemValue="#{role}" itemLabel="#{msg.get(role.name)}" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="#{msg.get('password')}" for="lastname" />
+				<p:password id="password" value="#{mbUsers.newPassword}" disabled="#{mbUsers.readOnlyMode}" readOnly="#{mbUsers.readOnlyMode}" placeholder="Enter value" />
+				
+				<p:spacer/>
+
+				<h:panelGroup>
+					<p:selectBooleanCheckbox id="disabled" value="#{mbUsers.model.locked}" disabled="false" readOnly="#{mbUsers.readOnlyMode}" />
+					<p:outputLabel value="#{msg.get('disabled')}" for="disabled" />
+
+					<p:selectBooleanCheckbox id="expired" value="#{mbUsers.model.expired}" disabled="false" readOnly="#{mbUsers.readOnlyMode}" />
+					<p:outputLabel value="#{msg.get('expired')}" for="expired" />
+
+					<p:selectBooleanCheckbox id="locked" value="#{mbUsers.model.locked}" disabled="false" readOnly="#{mbUsers.readOnlyMode}" />
+					<p:outputLabel value="#{msg.get('locked')}" for="locked" />
+
+				</h:panelGroup>
+
+				<f:facet name="footer">
+					<div align="center">
+						<p:commandButton value="#{msg.get('Add')}" action="#{mbUsers.add}" rendered="#{mbUsers.allowAdd}" update="@form" process="model" />
+						<p:commandButton value="#{msg.get('Edit')}" action="#{mbUsers.edit}" process="@this" rendered="#{mbUsers.allowEdit}" update="@form" />
+						<p:commandButton value="#{msg.get('Save')}" action="#{mbUsers.save}" rendered="#{mbUsers.allowSave}" update="@form" process="model" />
+						<p:commandButton value="#{msg.get('Delete')}" action="#{mbUsers.delete}" process="@this" rendered="#{mbUsers.allowDelete}" update="@form" />
+						<p:commandButton value="#{msg.get('Reset')}" action="#{mbUsers.reset}" process="@this" rendered="#{mbUsers.allowReset}" update="@form" />
+						<p:commandButton value="#{msg.get('Fill')}" action="#{mbUsers.fill}" process="@this" rendered="#{mbUsers.allowFill}" update="@form" />
+						<p:commandButton value="#{msg.get('Cancel Edit')}" action="#{mbUsers.cancelEdit()}" process="@this" rendered="#{mbUsers.editMode}" update="@form" />
+					</div>
+				</f:facet>
+			</p:panelGrid>
+			<br />
+			<p:dataTable value="#{mbUsers.modelList}" 
+						var="model" rowKey="#{model.id}" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom" selectionMode="single" selection="#{mbUsers.model}" emptyMessage="">
+				<p:ajax event="rowSelect" update="@form:model" />
+				<f:facet name="header">Clowiz-Pages Data Table</f:facet>
+				<p:column headerText="#{msg.get('username')}" sortBy="#{model.username}" filterBy="#{model.username}">
+					<h:outputText value="#{model.username==null?'-':model.username}" />
+				</p:column>
+				<p:column headerText="#{msg.get('firstname')}" sortBy="#{model.firstname}" filterBy="#{model.firstname}">
+					<h:outputText value="#{model.firstname==null?'-':model.firstname}" />
+				</p:column>
+				<p:column headerText="#{msg.get('lastname')}" sortBy="#{model.lastname}" filterBy="#{model.lastname}">
+					<h:outputText value="#{model.lastname==null?'-':model.lastname}" />
+				</p:column>
+				<p:column headerText="#{msg.get('expired')}" sortBy="#{model.expired}" filterBy="#{model.expired}">
+					<h:outputText value="#{model.expired==null?'-':model.expired}" />
+				</p:column>
+				<p:column headerText="#{msg.get('locked')}" sortBy="#{model.locked}" filterBy="#{model.locked}">
+					<h:outputText value="#{model.locked==null?'-':model.locked}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

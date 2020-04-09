@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+	<f:facet name="first">
+		<title>As400</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/favicon.ico" />
+	</f:facet>
+	<!-- Generic styles -->
+	<link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet"
+		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" media="all" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Girassol|Roboto|Gelasio" rel="stylesheet" />
+
+	<!-- App wide resources -->
+	<link rel="stylesheet" href="#{request.contextPath}/resources/app.css?reload=#{util.reloadRandom()}" type="text/css" media="all" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/primefaces/primefaces-icons.css?reload=#{util.reloadRandom()}" type="text/css"
+		media="all" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/primefaces/components.css?reload=#{util.reloadRandom()}" type="text/css" media="all" />
+
+	<!-- Current page resources-->
+	<ui:fragment rendered="#{util.exists((util.path).concat('page.css'))}">
+		<link rel="stylesheet" href="#{util.path}page.css?reload=#{util.reloadRandom()}" type="text/css" media="all" />
+	</ui:fragment>
+	<ui:fragment rendered="#{util.exists((util.path).concat('page.js'))}">
+		<script src="#{util.path}page.js?reload=#{util.reloadRandom()}" />
+	</ui:fragment>
+</ui:composition>
+</html>

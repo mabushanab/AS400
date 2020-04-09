@@ -1,0 +1,23 @@
+image: maven:3.6.1-alpine
+
+prepapre:
+  stage: build
+  script:
+    - mvn package
+
+#build1:
+#  stage: build
+#  only:
+#  - dev
+#  tags:
+#  - dev_tag
+#  script:
+#  - sh docker.sh
+#build2:
+#  stage: build
+#  only:
+#  - master
+#  tags:
+#  - master_tag
+#  script:
+#  - sh docker.sh

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<ui:include src="inc/html-head.xhtml" />
+</h:head>
+<h:body>
+	<div id="wrapper">
+		<div id="top-banner">
+			<h1><a href="#{request.contextPath}/">As400</a></h1>
+		</div>
+
+		<div id="main-menu">
+			<ui:include src="inc/menu.xhtml" />
+		</div>
+		<div id="header">
+			<ui:insert name="page-title">Page Title</ui:insert>
+		</div>
+
+		<div id="page-container">
+			<ui:insert name="contents">main-contents-goes here</ui:insert>
+		</div>
+		<div id="footer">
+			Powered by <a href="https://www.Clowiz.com">Clowiz</a> (The Cloud-Wizard)
+		</div>
+	</div>
+</h:body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+	<h:form>
+		<p:autoUpdate />
+		<p:menubar>
+			<p:menuitem value="Home" url="#{request.contextPath}/" icon="fa fa-home" />
+			<p:menuitem value="Login" url="#{request.contextPath}/login/" icon="fa fa-key" rendered="#{not mbSecurity.userLoggedIn}"/>
+			<p:submenu label="Security" icon="fa jk-key" rendered="#{mbSecurity.admin}">
+				<p:menuitem value="Roles" url="#{request.contextPath}/admin/roles/" />
+				<p:menuitem value="Users" url="#{request.contextPath}/admin/users/" />
+			</p:submenu>
+			
+			<p:submenu label="Account" style="float:right" rendered="#{mbSecurity.userLoggedIn}">
+				<p:menuitem value="Change password" url="#{request.contextPath}/pages/user" />
+				<p:menuitem value="Logout" url="#{request.contextPath}/logout" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+
+</ui:composition>
+</html>

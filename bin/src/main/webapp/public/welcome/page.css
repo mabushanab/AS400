@@ -1,0 +1,25 @@
+.product-banner {
+	width: 500px;
+	margin: 20px auto;
+	padding: 30px;
+	opacity: 0.7;
+	background-color: rgba(0,0,0,.3);
+	color: white;
+	border-radius: 5px;
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.product-banner .product-name {
+	font-size: 2.5em;
+}
+
+.product-banner .product-summary {
+	margin-top: 50px;
+	font-size: 1.4em;
+}
+
+.product-banner .product-version {
+	margin-top: 50px;
+	font-size: 0.8em;
+	font-weight: bolder;
+}
